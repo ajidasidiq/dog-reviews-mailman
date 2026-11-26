@@ -18,6 +18,10 @@ ENTRY = (
 
 
 def main() -> None:
+    # Validation gate: the entry must stay a single line within the
+    # competition's 1-200 character limit before it is written out.
+    if not 1 <= len(ENTRY) <= 200 or "\n" in ENTRY:
+        raise ValueError(f"entry must be 1-200 chars, one line; got {len(ENTRY)}")
     out_path = "/output/entry.txt"
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w", encoding="utf-8") as f:
